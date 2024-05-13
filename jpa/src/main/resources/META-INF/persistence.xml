@@ -7,6 +7,9 @@
         <class>com.uptc.frw.models.ElectronicDevice</class>
         <class>com.uptc.frw.models.Type</class>
         <class>com.uptc.frw.models.SubType</class>
+        <class>com.uptc.frw.models.Components</class>
+        <class>com.uptc.frw.models.ComponentsDevices</class>
+        <class>com.uptc.frw.models.Manufacturer</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.97.4:1534:TESTCN"/>
