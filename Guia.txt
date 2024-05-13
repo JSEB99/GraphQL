@@ -1,0 +1,16 @@
+Aplicativo solicitado: Aparatos electrónicos
+
+Una empresa de aparatos electrónicos desea informatizar los datos de su catálogo de aparatos electrónicos dando la siguiente definición:
+
+Cada aparato electrónico viene determinado por un código único y una descripción. Además, cada aparato corresponde a un tipo de electrodomésticos. Cada tipo de electrodoméstico (televisor, mp3, lavadora, etc) tiene un nombre y unas características. Se supone que no hay dos tipos con el mismo nombre y características. Algunos tipos pueden formar parte de otro tipo más general (mp3 de aparato de música), pero los aparatos electrónicos solo forman parte de un único tipo.
+
+Los componentes son las piezas que forman el aparato. Vienen dados por un nombre (por ejemplo transformador) y unas especificaciones. También nos interesa conocer datos de los fabricantes de componentes: su RIF y su Domicilio Fiscal.
+
+Cada aparato puede llevar cualquier cantidad de componentes. Interesa saber para cada aparato que componentes lleva y que fabricante suministra cada componente. Un aparato puede llevar muchas unidades de un mismo componente (interesa saber cuántas), pero en este caso todas estarán suministradas por el mismo fabricante y con un mismo precio.
+
+La empresa además realiza la reparación de los aparatos electrónicos que existen en el catálogo. De estas reparaciones interesa saber la información del cliente que manda a reparar su aparato electrónico tal como número de documento, dirección, teléfono y correo electrónico. De estas reparaciones interesa saber la referencia del aparato que se reparó (la cual sale del catálogo), una descripción y la fecha de reparación. La reparación puede o no implicar cambios en los componentes del aparato electrónico por lo que también se desea saber cuales componentes fueron cambiados en una reparación.
+
+CREAR UN APLICATIVO JAVA QUE PERMITA LAS ACCIONES DE CRUD PARA CADA UNA DE LAS ENTIDADES DESCRITAS EN EL PROBLEMA.
+RETO CONCEPTUAL
+
+El reto de este caso consiste en integrar GrapQL al proyecto desarrollado. 
