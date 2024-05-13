@@ -9,11 +9,13 @@ import java.util.List;
 public class Type {
 
     @Id
-    @Column(name = "TIPO_ID ")
+    @Column(name = "TIPO_ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "typeGen")
+    @SequenceGenerator(name = "typeGen", sequenceName = "TIPO_SEQ ", allocationSize = 1)
     private int typeId;
-    @Column(name = "DESCRIPCION ")
+    @Column(name = "DESCRIPCION")
     private String description;
-    @Column(name = "CARACTERISTICAS ")
+    @Column(name = "CARACTERISTICAS")
     private String characteristics;
 
     @OneToMany(mappedBy = "type")

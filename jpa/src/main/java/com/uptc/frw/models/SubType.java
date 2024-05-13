@@ -9,9 +9,11 @@ import java.util.List;
 public class SubType {
 
     @Id
-    @Column(name = "SUBTIPO_ID ")
+    @Column(name = "SUBTIPO_ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "subTypeGen")
+    @SequenceGenerator(name = "subTypeGen", sequenceName = "SUBTIPO_SEQ", allocationSize = 1)
     private int subTypeId;
-    @Column(name = "DESCRIPCION ")
+    @Column(name = "DESCRIPCION")
     private String description;
 
     @OneToMany(mappedBy = "subType")
@@ -45,7 +47,7 @@ public class SubType {
 
     @Override
     public String toString() {
-        return "Subtype{" +
+        return "SubType{" +
                 "subTypeId=" + subTypeId +
                 ", description='" + description + '\'' +
                 '}';
