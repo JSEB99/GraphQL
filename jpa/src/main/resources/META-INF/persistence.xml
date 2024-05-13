@@ -4,6 +4,9 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="aparatosElectronicos">
+        <class>com.uptc.frw.models.Components</class>
+        <class>com.uptc.frw.models.ComponentsDevices</class>
+        <class>com.uptc.frw.models.Manufacturer</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.56.10:1534:TESTCN"/>
