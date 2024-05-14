@@ -14,6 +14,9 @@ public class Modification {
     private String description;
     @Column(name = "COMPONENTE_ID")
     private long idComponent;
+    @ManyToOne
+    @JoinColumn(name = "REPARACION_ID", nullable = false)
+    private Repair repairId;
 
     public Modification() {
     }
@@ -40,6 +43,14 @@ public class Modification {
 
     public void setIdComponent(long idComponent) {
         this.idComponent = idComponent;
+    }
+
+    public Repair getRepairId() {
+        return repairId;
+    }
+
+    public void setRepairId(Repair repairId) {
+        this.repairId = repairId;
     }
 
     @Override

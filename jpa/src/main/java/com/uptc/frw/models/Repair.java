@@ -21,11 +21,19 @@ public class Repair {
     private Client idClient;
     @Column(name = "APARATO_ID")
     private long idApparatus;
-    @Column(name = "MODIFICACION_ID")
-    private long idModification;
     @Column(name ="FECHA")
     private Date repairDate;
+    @OneToMany(mappedBy = "repairId")
+    private List<Modification> modifications;
     public Repair() {
+    }
+
+    public List<Modification> getModifications() {
+        return modifications;
+    }
+
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
     public long getId() {
@@ -68,13 +76,6 @@ public class Repair {
         this.idApparatus = idApparatus;
     }
 
-    public long getIdModification() {
-        return idModification;
-    }
-
-    public void setIdModification(long idModification) {
-        this.idModification = idModification;
-    }
 
     @Override
     public String toString() {
@@ -82,9 +83,7 @@ public class Repair {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", repairDate=" + repairDate +
-                ", idClient=" + idClient +
                 ", idApparatus=" + idApparatus +
-                ", idModification=" + idModification +
                 '}';
     }
 }
