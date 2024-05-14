@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "COMPONENTE_APARATO")
-public class ComponentsDevices {
+public class ComponentDevice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "compoDeviceGen")
@@ -15,7 +15,7 @@ public class ComponentsDevices {
     @Column(name = "COMPONENTE_ID",insertable = false, updatable = false)
     private long componentId;
 
-    @Column(name = "APARATO_ID")
+    @Column(name = "APARATO_ID", insertable = false, updatable = false)
     private long deviceId;
 
     @Column(name = "CANTIDAD")
@@ -23,16 +23,28 @@ public class ComponentsDevices {
 
     @ManyToOne
     @JoinColumn(name = "COMPONENTE_ID", nullable = false)
-    private Components components;
+    private Component components;
 
-    public ComponentsDevices() {
+    @ManyToOne
+    @JoinColumn(name = "APARATO_ID", nullable = false)
+    private ElectronicDevice electronicDevice;
+
+    public ComponentDevice() {
     }
 
-    public Components getComponents() {
+    public ElectronicDevice getElectronicDevice() {
+        return electronicDevice;
+    }
+
+    public void setElectronicDevice(ElectronicDevice electronicDevice) {
+        this.electronicDevice = electronicDevice;
+    }
+
+    public Component getComponents() {
         return components;
     }
 
-    public void setComponents(Components components) {
+    public void setComponents(Component components) {
         this.components = components;
     }
 

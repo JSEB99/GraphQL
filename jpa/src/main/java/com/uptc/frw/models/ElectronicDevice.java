@@ -2,6 +2,8 @@ package com.uptc.frw.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "APARATOS_ELECTRONICOS")
 public class ElectronicDevice {
@@ -17,6 +19,9 @@ public class ElectronicDevice {
     @ManyToOne
     @JoinColumn(name="TIPO_ID",nullable=false)
     private Type type;
+
+    @OneToMany(mappedBy = "electronicDevice")
+    private List<ComponentDevice> componentDevices;
 
     public ElectronicDevice() {}
 
@@ -42,6 +47,14 @@ public class ElectronicDevice {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public List<ComponentDevice> getComponentDevices() {
+        return componentDevices;
+    }
+
+    public void setComponentDevices(List<ComponentDevice> componentDevices) {
+        this.componentDevices = componentDevices;
     }
 
     @Override
