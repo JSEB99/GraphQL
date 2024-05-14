@@ -4,17 +4,23 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="aparatosElectronicos">
-        <class>com.uptc.frw.models.Modification</class>
-        <class>com.uptc.frw.models.Repair</class>
-        <class>com.uptc.frw.models.Client</class>
+        <class>com.uptc.frw.models.ElectronicDevice</class>
+        <class>com.uptc.frw.models.Type</class>
+        <class>com.uptc.frw.models.SubType</class>
+        <class>com.uptc.frw.models.Component</class>
+        <class>com.uptc.frw.models.ComponentDevice</class>
+        <class>com.uptc.frw.models.Manufacturer</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <!--property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.97.4:1534:TESTCN"/-->
-            <!--property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.56.10:1534:TESTCN"/-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.1.110:1534:NOMINA"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.56.10:1534:TESTCN"/>
             <property name="javax.persistence.jdbc.user" value="PROYECTO"/>
             <property name="javax.persistence.jdbc.password" value="A"/>
             <property name="hibernate.show_sql" value="true"/>
+
+            <!--property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.97.4:1534:TESTCN"/-->
+            <!--property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.56.10:1534:TESTCN"/-->
+            <!--property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.1.110:1534:NOMINA"/-->
         </properties>
+
     </persistence-unit>
 </persistence>
