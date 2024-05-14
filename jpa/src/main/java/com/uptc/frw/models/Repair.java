@@ -19,12 +19,15 @@ public class Repair {
     @ManyToOne
     @JoinColumn(name = "CLIENTE_ID",nullable = false)
     private Client idClient;
-    @Column(name = "APARATO_ID")
+    @Column(name = "APARATO_ID",insertable = false,updatable = false)
     private long idApparatus;
     @Column(name ="FECHA")
     private Date repairDate;
     @OneToMany(mappedBy = "repairId")
     private List<Modification> modifications;
+    @ManyToOne
+    @JoinColumn(name = "APARATO_ID",nullable = false)
+    private ElectronicDevice electronicDevices;
     public Repair() {
     }
 
@@ -38,6 +41,14 @@ public class Repair {
 
     public long getId() {
         return id;
+    }
+
+    public ElectronicDevice getElectronicDevices() {
+        return electronicDevices;
+    }
+
+    public void setElectronicDevices(ElectronicDevice electronicDevices) {
+        this.electronicDevices = electronicDevices;
     }
 
     public void setId(long id) {

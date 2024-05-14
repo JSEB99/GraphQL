@@ -26,7 +26,8 @@ public class Component {
 
     @OneToMany(mappedBy = "components")
     private List<ComponentDevice> componentsDevices;
-
+    @OneToMany(mappedBy = "componentID")
+    private List<Modification> modifications;
     public Component() {
     }
 
@@ -36,6 +37,14 @@ public class Component {
 
     public void setComponentsDevices(List<ComponentDevice> componentsDevices) {
         this.componentsDevices = componentsDevices;
+    }
+
+    public List<Modification> getModifications() {
+        return modifications;
+    }
+
+    public void setModifications(List<Modification> modifications) {
+        this.modifications = modifications;
     }
 
     public long getComponentId() {

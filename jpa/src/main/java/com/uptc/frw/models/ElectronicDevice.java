@@ -22,7 +22,8 @@ public class ElectronicDevice {
 
     @OneToMany(mappedBy = "electronicDevice")
     private List<ComponentDevice> componentDevices;
-
+    @OneToMany(mappedBy = "electronicDevices")
+    private List<Repair> repairs;
     public ElectronicDevice() {}
 
     public int getDeviceId() {
@@ -55,6 +56,14 @@ public class ElectronicDevice {
 
     public void setComponentDevices(List<ComponentDevice> componentDevices) {
         this.componentDevices = componentDevices;
+    }
+
+    public List<Repair> getRepairs() {
+        return repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
     }
 
     @Override

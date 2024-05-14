@@ -12,17 +12,28 @@ public class Modification {
     private long id;
     @Column(name = "DESCRIPCION")
     private String description;
-    @Column(name = "COMPONENTE_ID")
+    @Column(name = "COMPONENTE_ID",insertable = false,updatable = false)
     private long idComponent;
     @ManyToOne
     @JoinColumn(name = "REPARACION_ID", nullable = false)
     private Repair repairId;
+    @ManyToOne
+    @JoinColumn(name = "COMPONENTE_ID",nullable = false)
+    private Component componentID;
 
     public Modification() {
     }
 
     public long getId() {
         return id;
+    }
+
+    public Component getComponentID() {
+        return componentID;
+    }
+
+    public void setComponentID(Component componentID) {
+        this.componentID = componentID;
     }
 
     public void setId(long id) {
@@ -58,7 +69,7 @@ public class Modification {
         return "Modification{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
-                ", idComponent=" + idComponent +
+               ", idComponent=" + idComponent +
                 '}';
     }
 }
