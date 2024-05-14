@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "COMPONENTES")
-public class Components {
+public class Component {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "compoGen")
@@ -25,16 +25,16 @@ public class Components {
     private Manufacturer manufacturers;
 
     @OneToMany(mappedBy = "components")
-    private List<ComponentsDevices> componentsDevices;
+    private List<ComponentDevice> componentsDevices;
 
-    public Components() {
+    public Component() {
     }
 
-    public List<ComponentsDevices> getComponentsDevices() {
+    public List<ComponentDevice> getComponentsDevices() {
         return componentsDevices;
     }
 
-    public void setComponentsDevices(List<ComponentsDevices> componentsDevices) {
+    public void setComponentsDevices(List<ComponentDevice> componentsDevices) {
         this.componentsDevices = componentsDevices;
     }
 

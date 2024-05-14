@@ -21,7 +21,7 @@ public class Manufacturer {
     private String fiscalDomain;
 
     @OneToMany(mappedBy = "manufacturers")
-    private List<Components> components;
+    private List<Component> components;
 
     public Manufacturer() {
 
@@ -51,11 +51,11 @@ public class Manufacturer {
         this.fiscalDomain = fiscalDomain;
     }
 
-    public List<Components> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(List<Components> components) {
+    public void setComponents(List<Component> components) {
         this.components = components;
     }
 
