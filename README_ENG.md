@@ -76,10 +76,10 @@ The following stages are followed:
 ### Database Schema Modeling
 
 1. The following modeling is carried out:
-2. 
+
 <img src="./Assets/Esquema.jpg" alt="Database model">
 
-3. The following script is created according to the [Oracle](https://www.oracle.com/) engine
+2. The following script is created according to the [Oracle](https://www.oracle.com/) engine
 
 ```SQL
 DROP USER PROYECTO CASCADE;
