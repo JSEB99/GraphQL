@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ElectronicDeviceService {
@@ -52,5 +53,9 @@ public class ElectronicDeviceService {
 
     public void deleteElectronicDevice(int id) {
         electronicDeviceRepository.deleteById(id);
+    }
+    public ElectronicDevice findElectronicDeviceById(int id ){
+        Optional<ElectronicDevice> electronicDevice = electronicDeviceRepository.findById(id);
+        return electronicDevice.orElse(null);
     }
 }
