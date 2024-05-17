@@ -5,6 +5,10 @@ type Query {
 
     findAllTypes : [Type]
     findTypeById(typeId: Int) : Type
+    findTypeBySubTypeId(subtypeId: Int) : [Type]
+
+    findAllSubTypes : [SubType]
+    findSubTypeById(subTypeId: Int) : SubType
 }
 
 type Mutation {
@@ -14,7 +18,12 @@ type Mutation {
 
     createType(inputType: Types) : Type
     updateType(inputType: Types) : Type
-    deleteType(typeId: Int) :String
+    deleteType(typeId: Int) : String
+
+    createSubType(inputSubType: SubTypes) : SubType
+    updateSubType(inputSubType: SubTypes) : SubType
+    deleteSubType(subTypeId: Int) : String
+
 }
 
 type ElectronicDevices {
@@ -49,6 +58,11 @@ input Types {
 }
 
 type SubType {
+    subTypeId: ID,
+    description: String
+}
+
+input SubTypes {
     subTypeId: ID,
     description: String
 }
