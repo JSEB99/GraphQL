@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface ClientRepository extends JpaRepository<Client,Integer> {
-    public List<Repair> findClientById(Integer numberIdClient);
+
 }

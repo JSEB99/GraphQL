@@ -23,14 +23,14 @@ public class ModificationController {
     public List<Modification> findAllModifications(){
         return modificationService.findAll();
     }
-    @MutationMapping
+   /* @MutationMapping
     public Modification createModification(@Argument Modification inputModification){
         return modificationService.createModification(inputModification);
     }
     @MutationMapping
     public Modification updateModification(@Argument Modification updateModification){
         return modificationService.updateModification(updateModification);
-    }
+    }*/
     @MutationMapping
     public String deleteModification(@Argument Integer deleteModification){
         Modification modification = modificationService.findById(deleteModification);
@@ -40,5 +40,9 @@ public class ModificationController {
         }else {
             return ("El cliente con id: " + deleteModification + " no existe");
         }
+    }
+    @QueryMapping
+    public List<Modification> findModificationByRepaidId(@Argument Integer numRepairId){
+        return modificationService.findByidRepair(numRepairId);
     }
 }

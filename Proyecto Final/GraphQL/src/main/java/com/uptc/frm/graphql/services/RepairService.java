@@ -61,6 +61,11 @@ public class RepairService {
         return null;
     }
     public void deleteRepair(int id){repairRepository.deleteById(id);}
-
+    public List<Repair> findByNumberIdClient (int numberIdClient){
+        return repairRepository.findByNumberIdClient(numberIdClient);
+    }
+    public List<Repair> findByidApparatus(int idApparatus){
+        return repairRepository.findByidApparatus(idApparatus);
+    }
 
 }

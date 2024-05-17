@@ -1,6 +1,7 @@
 package com.uptc.frm.graphql.controller;
 
 import com.uptc.frm.graphql.jpa.models.Client;
+import com.uptc.frm.graphql.jpa.models.ElectronicDevice;
 import com.uptc.frm.graphql.jpa.models.Repair;
 import com.uptc.frm.graphql.services.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,14 @@ public class RepairController {
         }else {
             return ("El cliente con id: " + deleteRepair + " no existe");
         }
+    }
+    @QueryMapping
+    public List<Repair> findRepairByNumIdClient(@Argument Integer numberIdClient) {
+        return repairService.findByNumberIdClient(numberIdClient);
+    }
+    @QueryMapping
+    public List<Repair> findElectronicDeviceByRepairId(@Argument Integer idApparatus){
+        return repairService.findByidApparatus(idApparatus);
     }
 
 }

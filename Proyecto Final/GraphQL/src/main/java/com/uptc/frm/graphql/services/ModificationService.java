@@ -21,19 +21,19 @@ public class ModificationService {
     public List<Modification> findAll(){
         return modificationRepository.findAll();
     }
-    public Modification createModification(Modification modification){
+   /* public Modification createModification(Modification modification){
         //Validar compopnente
         //Component component = componentService.findById(modification.getIdComponent());
 
         Repair repair = repairService.findById((int)modification.getIdRepair());
-        if (repair != null /*&& component !=null*/){
+        if (repair != null /*&& component !=null*//*){
             modification.setRepairId(repair);
             modification.setIdComponent(1);
             return modificationRepository.save(modification);
         }
         return null;
-    }
-    public Modification updateModification(Modification updateModification){
+    }*/
+    /*public Modification updateModification(Modification updateModification){
         Modification modification = findById((int)updateModification.getId());
         if(modification != null && !updateModification.equals(modification)){
             Long newRepair = updateModification.getIdRepair();
@@ -51,11 +51,14 @@ public class ModificationService {
                 if (component != null){
                     modification.setIdComponent(updateModification.getIdComponent());
                 }*/
-
+/*
             }
             return modificationRepository.save(modification);
         }
         return null;
-    }
+    }*/
     public void deleteModification(int id){modificationRepository.deleteById(id);}
+    public List<Modification> findByidRepair (int numRepairId){
+        return modificationRepository.findByidRepair(numRepairId);
+    }
 }

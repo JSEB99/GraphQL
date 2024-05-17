@@ -48,8 +48,6 @@ public class ClientService {
         return null;
     }
     public void deleteClient(int id){clientRepository.deleteById(id);}
-    public Client findClientById(int id ){
-        Optional<Client> client = clientRepository.findById(id);
-        return client.orElse(null);
-    }
+
+
 }
