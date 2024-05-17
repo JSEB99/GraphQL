@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ComponentDeviceRepository extends JpaRepository<ComponentDevice, Integer> {
     public List<ComponentDevice> findByComponentId(Integer componentId);
+    public List<ComponentDevice> findByDeviceId(Integer deviceId);
 }

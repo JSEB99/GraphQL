@@ -1,8 +1,10 @@
 package com.uptc.frm.graphql.services;
 
 import com.uptc.frm.graphql.jpa.models.Manufacturer;
+import com.uptc.frm.graphql.jpa.repository.ComponentRepository;
 import com.uptc.frm.graphql.jpa.repository.ManufacturerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,11 @@ public class ManufacturerService {
 
     @Autowired
     private ManufacturerRepository manufacturerRepository;
+    @Autowired
+    @Lazy
+    private ComponentService componentService;
+    @Autowired
+    private ComponentRepository componentRepository;
 
     public List<Manufacturer> findAllManufacturers() {
         return manufacturerRepository.findAll();
@@ -40,6 +47,8 @@ public class ManufacturerService {
     }
 
     public void deleteManufacturer(Integer manufacturerId){
+        Integer componentId = (int) componentRepository.findComponentsByManufacturerId(manufacturerId).get(0).getComponentId();
+        componentRepository.deleteById(componentId);
         manufacturerRepository.deleteById(manufacturerId);
     }
 

@@ -2,9 +2,10 @@ package com.uptc.frm.graphql.services;
 
 import com.uptc.frm.graphql.jpa.models.Component;
 import com.uptc.frm.graphql.jpa.models.Manufacturer;
-import com.uptc.frm.graphql.jpa.models.Type;
+import com.uptc.frm.graphql.jpa.repository.ComponentDeviceRepository;
 import com.uptc.frm.graphql.jpa.repository.ComponentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,13 @@ public class ComponentService {
     @Autowired
     private ComponentRepository componentRepository;
     @Autowired
+    @Lazy
     private ManufacturerService manufacturerService;
+    @Autowired
+    @Lazy
+    private ComponentDeviceService componentDeviceService;
+    @Autowired
+    private ComponentDeviceRepository componentDeviceRepository;
 
     public List<Component> findAllComponents() {
         return componentRepository.findAll();
@@ -35,7 +42,11 @@ public class ComponentService {
             inputComponent.setManufacturers(manufacturer);
             return componentRepository.save(inputComponent);
         }
-        return null;
+        if (manufacturer == null && inputComponent.getSpecs() == null){
+            return null;
+        }else {
+            return componentRepository.save(inputComponent);
+        }
     }
 
     public Component updateComponent(Component inputComponent) {
@@ -54,6 +65,8 @@ public class ComponentService {
     }
 
     public void deleteComponentById(Integer componentId) {
+        Integer componentDeviceId = (int) componentDeviceRepository.findByComponentId(componentId).get(0).getComponentsDeviceId();
+        componentDeviceRepository.deleteById(componentDeviceId);
         componentRepository.deleteById(componentId);
     }
 }

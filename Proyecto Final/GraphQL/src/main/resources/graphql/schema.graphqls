@@ -9,6 +9,8 @@ type Query {
     findComponentsByManufacturerId(manufacturerId: Int) : [Component]
     findAllComponentDevices: [ComponentDevice]
     findComponentDevicesByComponentId(componentId: Int) : [ComponentDevice]
+    findComponentDevicesByDeviceId(deviceId: Int) : [ComponentDevice]
+    findComponentDeviceByComponentDeviceId(componentDeviceId: Int) : ComponentDevice
 }
 
 type Mutation {
@@ -21,6 +23,9 @@ type Mutation {
     createComponent(inputComponent: CreateComponent) : Component
     updateComponent(inputComponent: UpdateComponent) : Component
     deleteComponent(componentId: Int) : String
+    createComponentDevice(inputComponentDevice: CreateComponentDevice) : ComponentDevice
+    updateComponentDevice(inputComponentDevice: UpdateComponentDevice) : ComponentDevice
+    deleteComponentDevice(componentDeviceId: Int) : String
 }
 
 type ElectronicDevices {
@@ -91,6 +96,19 @@ type ComponentDevice {
     quantity: Int,
     components: Component,
     electronicDevice: ElectronicDevices
+}
+
+input CreateComponentDevice {
+    componentId: Int!,
+    deviceId: Int!,
+    quantity: Int
+}
+
+input UpdateComponentDevice {
+    componentsDeviceId: ID,
+    componentId: Int,
+    deviceId: Int,
+    quantity: Int
 }
 
 type Modification {
