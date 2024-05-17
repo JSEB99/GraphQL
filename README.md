@@ -248,14 +248,14 @@ Se procede a crear un proyecto con persistencia usando JPA. Para esto nos apoyar
 
 ### Implementación con SpringBoot y GraphQL
 
-Se crea un proyecto en SpringBoot usando Intellij, en esta ocasión se selecciona:
+Se crea un proyecto en SpringBoot usando Intellij, en esta ocasión se selecciona lo siguiente al momento de crear el proyecto
 - Gradle
 - Versión 17 de Java
-- SpringBoot Web Tools
-- Spring
-- JPA
+- SpringBoot DevTools
+- Spring Web
+- Spring Data JPA
+- Spring for GraphQL
 - OracleDriver
-- GraphQL
 
 Se termina mapeando el sigueine modelo UML con los metodos utilizados por GraphQL
 
