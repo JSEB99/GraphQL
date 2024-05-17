@@ -45,7 +45,7 @@ public class RepairController {
                 repairService.deleteRepair(deleteRepair);
                 return ("La reparacion con id: " + deleteRepair + " se elimino con exito");
             }else{
-                return ("La reparacion con id: "+ deleteRepair + " tiene "+modifications.size()+" modificaciones, por lo tanto no se puede eliminar")
+                return ("La reparacion con id: "+ deleteRepair + " tiene "+modifications.size()+" modificaciones, por lo tanto no se puede eliminar");
             }
 
         }else {
