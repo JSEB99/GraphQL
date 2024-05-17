@@ -1,0 +1,34 @@
+type Query {
+    findAllElectronicDevice : [ElectronicDevices]
+    findElectronicDeviceById(electronicDeviceId: Int) : ElectronicDevices
+    findElectronicDeviceByTypeId(typedId: Int) : [ElectronicDevices]
+}
+
+type Mutation {
+    createElectronicDevice(inputDevice: ElectronicDevice) : ElectronicDevices
+    updateElectronicDevice(inputDevice: ElectronicDeviceUpdate) : ElectronicDevices
+    deleteElectronicDevice(electronicDeviceId: Int) : String
+}
+
+type ElectronicDevices {
+    deviceId: ID,
+    description: String,
+    type: Type
+}
+
+input ElectronicDevice {
+    description: String,
+    typeId: Int!
+}
+
+input ElectronicDeviceUpdate {
+    deviceId: ID!,
+    description: String,
+    typeId: Int
+}
+
+type Type {
+    typeId: ID,
+    description: String,
+    characteristics: String
+}
