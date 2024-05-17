@@ -1,6 +1,13 @@
 # GraphQL + SpringBoot + Java + Oracle Database
 
-Aplicativo solicitado: **Aparatos electrónicos**
+<div style="display: flex;">
+    <img src="./Assets/graphql.png" alt="GraphQL" style="width: 150px; height: auto;">
+    <img src="./Assets/springboot.png" alt="SpringBoot" style="width: 150px; height: auto;">
+    <img src="./Assets/Java.png" alt="Java" style="width: 150px; height: auto;">
+    <img src="./Assets/Oracle.png" alt="OracleDB" style="width: 150px; height: auto;">
+</div>
+
+## Aplicativo solicitado: **Aparatos electrónicos**
 
 Una empresa de aparatos electrónicos desea informatizar los datos de su catálogo de aparatos electrónicos dando la siguiente definición:
 
@@ -94,7 +101,7 @@ Se siguen las siguientes etapas:
 
 1. Se efectua el siguiente modelado
 
-
+<img src="./Assets/Esquema.jpg" alt="Database model">
 
 2. Se crea el siguiente script según motor [Oracle](https://www.oracle.com/co/)
 
@@ -237,6 +244,8 @@ ALTER TABLE COMPONENTES_APARATOS
 
 Se procede a crear un proyecto con persistencia usando JPA. Para esto nos apoyaremos en el IDE de *Intellij IDEA Ultimate Edition*. Se realiza un mapeo sobre cada tabla en la base de datos representada por una clase en Java.
 
+<img src="./Assets/JPAARCH.png" alt="JPA Architecture">
+
 ### Implementación con SpringBoot y GraphQL
 
 Se crea un proyecto en SpringBoot usando Intellij, en esta ocasión se selecciona:
@@ -249,6 +258,8 @@ Se crea un proyecto en SpringBoot usando Intellij, en esta ocasión se seleccion
 - GraphQL
 
 Se termina mapeando el sigueine modelo UML con los metodos utilizados por GraphQL
+
+## [UML Model](./Assets/UML_Doc.pdf)
 
 ### Conclusiones
 
