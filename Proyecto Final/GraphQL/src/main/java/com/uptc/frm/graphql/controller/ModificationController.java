@@ -23,14 +23,14 @@ public class ModificationController {
     public List<Modification> findAllModifications(){
         return modificationService.findAll();
     }
-   /* @MutationMapping
+    @MutationMapping
     public Modification createModification(@Argument Modification inputModification){
         return modificationService.createModification(inputModification);
     }
     @MutationMapping
     public Modification updateModification(@Argument Modification updateModification){
         return modificationService.updateModification(updateModification);
-    }*/
+    }
     @MutationMapping
     public String deleteModification(@Argument Integer deleteModification){
         Modification modification = modificationService.findById(deleteModification);

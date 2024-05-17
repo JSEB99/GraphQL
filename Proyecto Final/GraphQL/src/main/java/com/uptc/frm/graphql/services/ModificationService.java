@@ -15,25 +15,25 @@ public class ModificationService {
     private ModificationRepository modificationRepository;
     @Autowired
     private RepairService repairService;
+    @Autowired
+    private ComponentService componentService;
     public Modification findById(Integer id){
         return  modificationRepository.findById(id).orElse(null);
     }
     public List<Modification> findAll(){
         return modificationRepository.findAll();
     }
-   /* public Modification createModification(Modification modification){
-        //Validar compopnente
-        //Component component = componentService.findById(modification.getIdComponent());
-
+    public Modification createModification(Modification modification){
+        Component component = componentService.findComponentById((int)modification.getIdComponent());
         Repair repair = repairService.findById((int)modification.getIdRepair());
-        if (repair != null /*&& component !=null*//*){
+        if (repair != null && component !=null){
             modification.setRepairId(repair);
             modification.setIdComponent(1);
             return modificationRepository.save(modification);
         }
         return null;
-    }*/
-    /*public Modification updateModification(Modification updateModification){
+    }
+    public Modification updateModification(Modification updateModification){
         Modification modification = findById((int)updateModification.getId());
         if(modification != null && !updateModification.equals(modification)){
             Long newRepair = updateModification.getIdRepair();
@@ -46,19 +46,20 @@ public class ModificationService {
                     modification.setIdRepair(updateModification.getIdRepair());
                 }
             }if ((modification.getIdComponent()!= updateModification.getIdComponent())&& newComponent!= null){
-                return null;
-                /*Component component = componentService.findById((int)updateModification.getIdComponent());
-                if (component != null){
+                Component componente = componentService.findComponentById((int)updateModification.getIdComponent());
+                if (componente != null){
                     modification.setIdComponent(updateModification.getIdComponent());
-                }*/
-/*
+                }
             }
             return modificationRepository.save(modification);
         }
         return null;
-    }*/
+    }
     public void deleteModification(int id){modificationRepository.deleteById(id);}
     public List<Modification> findByidRepair (int numRepairId){
         return modificationRepository.findByidRepair(numRepairId);
+    }
+    public List<Modification> findByidComponent(int idComponent){
+        return modificationRepository.findByidComponent(idComponent);
     }
 }

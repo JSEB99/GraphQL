@@ -2,7 +2,9 @@ package com.uptc.frm.graphql.controller;
 
 import com.uptc.frm.graphql.jpa.models.Client;
 import com.uptc.frm.graphql.jpa.models.ElectronicDevice;
+import com.uptc.frm.graphql.jpa.models.Modification;
 import com.uptc.frm.graphql.jpa.models.Repair;
+import com.uptc.frm.graphql.services.ModificationService;
 import com.uptc.frm.graphql.services.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -16,6 +18,8 @@ import java.util.List;
 public class RepairController {
     @Autowired
     private RepairService repairService;
+    @Autowired
+    private ModificationService modificationService;
     @QueryMapping(name = "findRepairById")
     public Repair findRepairById(@Argument(name = "idRepair") Integer idRepair){
         return repairService.findById(idRepair);
@@ -36,10 +40,16 @@ public class RepairController {
     public String deleteRepair(@Argument Integer deleteRepair){
         Repair repair = repairService.findById(deleteRepair);
         if (repair != null) {
-            repairService.deleteRepair(deleteRepair);
-            return ("El cliente con id: " + deleteRepair + " se elimino con exito");
+            List<Modification> modifications = modificationService.findByidRepair(deleteRepair);
+            if (modifications.isEmpty()){
+                repairService.deleteRepair(deleteRepair);
+                return ("La reparacion con id: " + deleteRepair + " se elimino con exito");
+            }else{
+                return ("La reparacion con id: "+ deleteRepair + " tiene "+modifications.size()+" modificaciones, por lo tanto no se puede eliminar")
+            }
+
         }else {
-            return ("El cliente con id: " + deleteRepair + " no existe");
+            return ("La reparacion con id: " + deleteRepair + " no existe");
         }
     }
     @QueryMapping
