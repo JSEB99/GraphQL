@@ -87,6 +87,10 @@ public class ElectronicDevice {
         return "ElectronicDevice{" +
                 "deviceId=" + deviceId +
                 ", description='" + description + '\'' +
+                ", typeId=" + typeId +
+                ", type=" + type +
+                ", componentDevices=" + componentDevices +
+                ", repairs=" + repairs +
                 '}';
     }
 }

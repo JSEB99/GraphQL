@@ -19,8 +19,10 @@ public class Repair {
     @ManyToOne
     @JoinColumn(name = "CLIENTE_ID",nullable = false)
     private Client idClient;
+    @Column(name = "CLIENTE_ID",insertable = false,updatable = false)
+    private Integer numberIdClient;
     @Column(name = "APARATO_ID",insertable = false,updatable = false)
-    private long idApparatus;
+    private Integer idApparatus;
     @Column(name ="FECHA")
     private Date repairDate;
     @OneToMany(mappedBy = "repairId")
@@ -79,14 +81,21 @@ public class Repair {
         this.idClient = idClient;
     }
 
-    public long getIdApparatus() {
+    public Integer getNumberIdClient() {
+        return numberIdClient;
+    }
+
+    public void setNumberIdClient(Integer numberIdClient) {
+        this.numberIdClient = numberIdClient;
+    }
+
+    public Integer getIdApparatus() {
         return idApparatus;
     }
 
-    public void setIdApparatus(long idApparatus) {
+    public void setIdApparatus(Integer idApparatus) {
         this.idApparatus = idApparatus;
     }
-
 
     @Override
     public String toString() {
@@ -95,6 +104,7 @@ public class Repair {
                 ", description='" + description + '\'' +
                 ", repairDate=" + repairDate +
                 ", idApparatus=" + idApparatus +
+                ", idClientC=" + numberIdClient +
                 '}';
     }
 }

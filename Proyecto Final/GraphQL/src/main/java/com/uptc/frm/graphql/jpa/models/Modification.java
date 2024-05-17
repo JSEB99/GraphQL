@@ -14,6 +14,8 @@ public class Modification {
     private String description;
     @Column(name = "COMPONENTE_ID",insertable = false,updatable = false)
     private long idComponent;
+    @Column(name = "REPARACION_ID", insertable = false, updatable = false)
+    private long idRepair;
     @ManyToOne
     @JoinColumn(name = "REPARACION_ID", nullable = false)
     private Repair repairId;
@@ -64,12 +66,21 @@ public class Modification {
         this.repairId = repairId;
     }
 
+    public long getIdRepair() {
+        return idRepair;
+    }
+
+    public void setIdRepair(long idRepair) {
+        this.idRepair = idRepair;
+    }
+
     @Override
     public String toString() {
         return "Modification{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                ", idComponent=" + idComponent +
+               ", idRepair=" + idRepair +
                 '}';
     }
 }

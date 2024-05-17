@@ -2,18 +2,55 @@ type Query {
     findAllElectronicDevice : [ElectronicDevices]
     findElectronicDeviceById(electronicDeviceId: Int) : ElectronicDevices
     findElectronicDeviceByTypeId(typedId: Int) : [ElectronicDevices]
+    findClientById(idClientC: Int) :Client
+    findAllClient :[Client]
+    findRepairById(idRepair: Int) :Repair
+    findAllRepairs :[Repair]
+    findModificationById(idModification : Int) :Modification
+    findAllModifications : [Modification]
+    findRepairByNumIdClient(numberIdClient: Int) : [Repair]
+    findModificationByRepaidId(numRepairId : Int) : [Modification]
+    findRepairIdByElectronicDevices(idApparatus : Int): [Repair]
+    findAllManufacturers : [Manufacturer]
+    findManufacturerById(manufacturerId: Int) : Manufacturer
+    findAllComponents: [Component]
+    findComponentById(componentId: Int) : Component
+    findComponentsByManufacturerId(manufacturerId: Int) : [Component]
+    findAllComponentDevices: [ComponentDevice]
+    findComponentDevicesByComponentId(componentId: Int) : [ComponentDevice]
+    findComponentDevicesByDeviceId(deviceId: Int) : [ComponentDevice]
+    findComponentDeviceByComponentDeviceId(componentDeviceId: Int) : ComponentDevice
 }
 
 type Mutation {
     createElectronicDevice(inputDevice: ElectronicDevice) : ElectronicDevices
     updateElectronicDevice(inputDevice: ElectronicDeviceUpdate) : ElectronicDevices
     deleteElectronicDevice(electronicDeviceId: Int) : String
+    createManufacturer(inputManufacturer: CreateManufacturer) : Manufacturer
+    updateManufacturer(inputManufacturer: UpdateManufacturer) : Manufacturer
+    deleteManufacturer(manufacturerId: Int) : String
+    createComponent(inputComponent: CreateComponent) : Component
+    updateComponent(inputComponent: UpdateComponent) : Component
+    deleteComponent(componentId: Int) : String
+    createComponentDevice(inputComponentDevice: CreateComponentDevice) : ComponentDevice
+    updateComponentDevice(inputComponentDevice: UpdateComponentDevice) : ComponentDevice
+    deleteComponentDevice(componentDeviceId: Int) : String
+    createClient(inputClient : ClientCreate) : Client
+    updateClient(updateClient : ClientUpdate) : Client
+    deleteClient(deleteClient : Int):String
+    createRepair(inputRepair : CreateRepair) : Repair
+    updateRepair(updateRepair : UpdateRepair) : Repair
+    deleteRepair(deleteClient : Int) : String
+    createModification(inputModification : CreateModification) : Modification
+    updateModification(updateModification : UpdateModification) : Modification
+    deleteModification(deleteModification : Int) : String
 }
 
 type ElectronicDevices {
     deviceId: ID,
     description: String,
-    type: Type
+    type: Type,
+    typeId : Int
 }
 
 input ElectronicDevice {
@@ -26,9 +63,147 @@ input ElectronicDeviceUpdate {
     description: String,
     typeId: Int
 }
-
+input ClientCreate {
+    name: String!,
+    document: Int!,
+    address: String,
+    phone: Int,
+    email: String
+}
+input ClientUpdate {
+    id: ID!,
+    name: String,
+    document: Int,
+    address: String,
+    phone: Int,
+    email: String
+}
+input CreateRepair {
+    description: String,
+    numberIdClient: Int!,
+    idApparatus: Int!
+}
+input UpdateRepair {
+    id: ID!,
+    description: String,
+    numberIdClient: Int,
+    idApparatus: Int
+}
+input CreateModification {
+    description: String,
+    idRepair : Int!,
+    idComponent: Int!
+}
+input UpdateModification {
+    id:ID!,
+    description: String,
+    idRepair : Int,
+    idComponent: Int
+}
 type Type {
     typeId: ID,
     description: String,
     characteristics: String
+}
+
+
+
+
+type Manufacturer {
+    manufacturerId: ID,
+    rif: String,
+    fiscalDomain: String,
+    components: Component
+}
+
+input CreateManufacturer {
+    rif: String,
+    fiscalDomain: String,
+}
+
+input UpdateManufacturer{
+    manufacturerId: ID!,
+    rif: String,
+    fiscalDomain: String
+}
+type Component {
+    componentId: ID,
+    specs: String,
+    manufacturerId: Int,
+    manufacturers: Manufacturer,
+    componentDevices: ComponentDevice,
+    modifications: Modification
+}
+
+
+input CreateComponent {
+    specs: String,
+    manufacturerId: Int!,
+}
+
+input UpdateComponent {
+    componentId: ID!,
+    specs: String,
+    manufacturerId: Int
+}
+
+
+
+input CreateComponentDevice {
+    componentId: Int!,
+    deviceId: Int!,
+    quantity: Int
+}
+
+input UpdateComponentDevice {
+    componentsDeviceId: ID,
+    componentId: Int,
+    deviceId: Int,
+    quantity: Int
+}
+
+
+
+
+
+
+type ComponentDevice {
+    componentsDeviceId: ID,
+    component: Int,
+    deviceId: Int,
+    quantity: Int,
+    components: Component,
+    electronicDevice: ElectronicDevices
+}
+
+
+
+type Modification {
+    id: ID,
+    description: String,
+    idRepair : Int,
+    idComponent: Int,
+    repairId: Repair,
+    componentId: Component,
+}
+
+type Repair {
+    id: ID,
+    description: String,
+    idClient: Client,
+    idApparatus: Int,
+    numberIdClient: Int,
+    repairDate: String,
+    modifications: Modification,
+    electronicDevices: ElectronicDevices
+}
+
+type Client {
+    id: ID,
+    name: String,
+    document: Int,
+    address: String,
+    phone: Int,
+    email: String,
+    repairs: Repair
 }
