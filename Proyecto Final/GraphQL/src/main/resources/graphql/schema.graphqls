@@ -74,6 +74,7 @@ input ElectronicDeviceUpdate {
     description: String,
     typeId: Int
 }
+
 input ClientCreate {
     name: String!,
     document: Int!,
@@ -81,6 +82,7 @@ input ClientCreate {
     phone: Int,
     email: String
 }
+
 input ClientUpdate {
     id: ID!,
     name: String,
@@ -89,28 +91,33 @@ input ClientUpdate {
     phone: Int,
     email: String
 }
+
 input CreateRepair {
     description: String,
     numberIdClient: Int!,
     idApparatus: Int!
 }
+
 input UpdateRepair {
     id: ID!,
     description: String,
     numberIdClient: Int,
     idApparatus: Int
 }
+
 input CreateModification {
     description: String,
     idRepair : Int!,
     idComponent: Int!
 }
+
 input UpdateModification {
     id:ID!,
     description: String,
     idRepair : Int,
     idComponent: Int
 }
+
 type Type {
     typeId: ID,
     description: String,
@@ -151,6 +158,7 @@ input UpdateManufacturer{
     rif: String,
     fiscalDomain: String
 }
+
 type Component {
     componentId: ID,
     specs: String,
@@ -159,7 +167,6 @@ type Component {
     componentDevices: ComponentDevice,
     modifications: Modification
 }
-
 
 input CreateComponent {
     specs: String,
@@ -171,8 +178,6 @@ input UpdateComponent {
     specs: String,
     manufacturerId: Int
 }
-
-
 
 input CreateComponentDevice {
     componentId: Int!,
@@ -187,11 +192,6 @@ input UpdateComponentDevice {
     quantity: Int
 }
 
-
-
-
-
-
 type ComponentDevice {
     componentsDeviceId: ID,
     component: Int,
@@ -200,8 +200,6 @@ type ComponentDevice {
     components: Component,
     electronicDevice: ElectronicDevices
 }
-
-
 
 type Modification {
     id: ID,
