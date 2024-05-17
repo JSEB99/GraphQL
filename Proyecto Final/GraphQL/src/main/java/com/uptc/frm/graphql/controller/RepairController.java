@@ -47,7 +47,7 @@ public class RepairController {
         return repairService.findByNumberIdClient(numberIdClient);
     }
     @QueryMapping
-    public List<Repair> findElectronicDeviceByRepairId(@Argument Integer idApparatus){
+    public List<Repair> findRepairIdByElectronicDevices(@Argument Integer idApparatus){
         return repairService.findByidApparatus(idApparatus);
     }
 

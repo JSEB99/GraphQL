@@ -10,7 +10,7 @@ type Query {
     findAllModifications : [Modification]
     findRepairByNumIdClient(numberIdClient: Int) : [Repair]
     findModificationByRepaidId(numRepairId : Int) : [Modification]
-    findElectronicDeviceByRepairId(idApparatus : Int): [ElectronicDevices]
+    findRepairIdByElectronicDevices(idApparatus : Int): [Repair]
 }
 
 type Mutation {
