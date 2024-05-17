@@ -17,6 +17,8 @@ public class Type {
     private String description;
     @Column(name = "CARACTERISTICAS")
     private String characteristics;
+    @Column(name = "SUBTIPO_ID", insertable = false, updatable = false)
+    private int subtypeId;
 
     @OneToMany(mappedBy = "type")
     private List<ElectronicDevice> electronicDevices;
@@ -49,6 +51,14 @@ public class Type {
 
     public void setCharacteristics(String characteristics) {
         this.characteristics = characteristics;
+    }
+
+    public int getSubtypeId() {
+        return subtypeId;
+    }
+
+    public void setSubtypeId(int subtypeId) {
+        this.subtypeId = subtypeId;
     }
 
     public List<ElectronicDevice> getElectronicDevices() {
