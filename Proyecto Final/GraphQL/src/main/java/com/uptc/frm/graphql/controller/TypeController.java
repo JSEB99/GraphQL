@@ -26,6 +26,11 @@ public class TypeController {
         return typeService.findTypeById(typeId);
     }
 
+    @QueryMapping
+    public List<Type> findTypeBySubTypeId(@Argument Integer subtypeId){
+        return typeService.findBySubTypeId(subtypeId);
+    }
+
     @MutationMapping
     public Type createType(@Argument Type inputType){
         return typeService.saveType(inputType);

@@ -25,6 +25,10 @@ public class TypeService {
         return typeRepository.findById(id).orElse(null);
     }
 
+    public List<Type> findBySubTypeId(int idSubType) {
+        return typeRepository.findBySubtypeId(idSubType);
+    }
+
     public Type saveType(Type type) {
         SubType subType = subTypeService.findSubTypeById(type.getSubtypeId());
         type.setSubType(subType);
