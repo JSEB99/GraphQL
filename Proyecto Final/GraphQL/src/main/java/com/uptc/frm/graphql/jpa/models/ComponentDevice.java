@@ -3,7 +3,7 @@ package com.uptc.frm.graphql.jpa.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "COMPONENTE_APARATO")
+@Table(name = "COMPONENTES_APARATOS")
 public class ComponentDevice {
 
     @Id
