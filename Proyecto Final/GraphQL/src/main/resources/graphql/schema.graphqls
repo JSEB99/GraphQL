@@ -2,28 +2,12 @@ type Query {
     findAllElectronicDevice : [ElectronicDevices]
     findElectronicDeviceById(electronicDeviceId: Int) : ElectronicDevices
     findElectronicDeviceByTypeId(typedId: Int) : [ElectronicDevices]
-
-    findAllTypes : [Type]
-    findTypeById(typeId: Int) : Type
-    findTypeBySubTypeId(subtypeId: Int) : [Type]
-
-    findAllSubTypes : [SubType]
-    findSubTypeById(subTypeId: Int) : SubType
 }
 
 type Mutation {
     createElectronicDevice(inputDevice: ElectronicDevice) : ElectronicDevices
     updateElectronicDevice(inputDevice: ElectronicDeviceUpdate) : ElectronicDevices
     deleteElectronicDevice(electronicDeviceId: Int) : String
-
-    createType(inputType: Types) : Type
-    updateType(inputType: Types) : Type
-    deleteType(typeId: Int) : String
-
-    createSubType(inputSubType: SubTypes) : SubType
-    updateSubType(inputSubType: SubTypes) : SubType
-    deleteSubType(subTypeId: Int) : String
-
 }
 
 type ElectronicDevices {
@@ -46,23 +30,5 @@ input ElectronicDeviceUpdate {
 type Type {
     typeId: ID,
     description: String,
-    characteristics: String,
-    subType: SubType
-}
-
-input Types {
-    typeId: ID,
-    description: String,
-    characteristics: String,
-    subtypeId: Int
-}
-
-type SubType {
-    subTypeId: ID,
-    description: String
-}
-
-input SubTypes {
-    subTypeId: ID,
-    description: String
+    characteristics: String
 }
