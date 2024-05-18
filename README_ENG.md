@@ -73,6 +73,8 @@ The challenge in this case is to integrate GraphQL into the developed project.
 
 The following stages are followed:
 
+<img src="./Assets/FlujoDeTrabajo.png" alt="WorkFlow">
+
 ### Database Schema Modeling
 
 1. The following modeling is carried out:
