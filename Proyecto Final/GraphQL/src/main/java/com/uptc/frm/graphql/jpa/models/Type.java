@@ -17,15 +17,12 @@ public class Type {
     private String description;
     @Column(name = "CARACTERISTICAS")
     private String characteristics;
-    @Column(name = "SUBTIPO_ID", insertable = false, updatable = false)
-    private int subtypeId;
 
     @OneToMany(mappedBy = "type")
     private List<ElectronicDevice> electronicDevices;
 
-    @ManyToOne
-    @JoinColumn(name="SUBTIPO_ID",nullable=false)
-    private SubType subType;
+    @OneToMany(mappedBy = "type")
+    private List<SubType> subTypes;
 
     public Type() {}
 
@@ -53,14 +50,6 @@ public class Type {
         this.characteristics = characteristics;
     }
 
-    public int getSubtypeId() {
-        return subtypeId;
-    }
-
-    public void setSubtypeId(int subtypeId) {
-        this.subtypeId = subtypeId;
-    }
-
     public List<ElectronicDevice> getElectronicDevices() {
         return electronicDevices;
     }
@@ -69,12 +58,12 @@ public class Type {
         this.electronicDevices = electronicDevices;
     }
 
-    public SubType getSubType() {
-        return subType;
+    public List<SubType> getSubTypes() {
+        return subTypes;
     }
 
-    public void setSubType(SubType subType) {
-        this.subType = subType;
+    public void setSubTypes(List<SubType> subTypes) {
+        this.subTypes = subTypes;
     }
 
     @Override

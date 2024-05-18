@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TypeService {
@@ -14,8 +15,6 @@ public class TypeService {
     @Autowired
     private TypeRepository typeRepository;
 
-    @Autowired
-    private SubTypeService subTypeService;
 
     public List<Type> getAllTypes() {
         return typeRepository.findAll();
@@ -25,43 +24,45 @@ public class TypeService {
         return typeRepository.findById(id).orElse(null);
     }
 
-    public List<Type> findBySubTypeId(int idSubType) {
-        return typeRepository.findBySubtypeId(idSubType);
-    }
-
     public Type saveType(Type type) {
-        SubType subType = subTypeService.findSubTypeById(type.getSubtypeId());
-        type.setSubType(subType);
         return typeRepository.save(type);
     }
 
     public Type updateType(Type type) {
         Type oldType = findTypeById(type.getTypeId());
+        boolean hasChanges = false;
         if (oldType != null) {
-            if (type.getDescription() != null){
+            if (type.getDescription() != null && !Objects.equals(oldType.getDescription(), type.getDescription())) {
                 oldType.setDescription(type.getDescription());
+                hasChanges = true;
             }
-            if (type.getCharacteristics() != null) {
+            if (type.getCharacteristics() != null && !Objects.equals(oldType.getCharacteristics(), type.getCharacteristics())) {
                 oldType.setCharacteristics(type.getCharacteristics());
+                hasChanges = true;
             }
-            if (type.getSubType() != null && oldType.getSubtypeId() != type.getSubtypeId()) {
-                SubType subType = subTypeService.findSubTypeById(type.getSubtypeId());
-                oldType.setSubType(subType);
+            if (hasChanges) {
+                return typeRepository.save(oldType);
             }
-            return typeRepository.save(oldType);
         }
-        return type;
+        return null;
     }
 
-    public void deleteTypeById(int id) {
-        typeRepository.deleteById(id);
+    public String deleteTypeById(Integer id) {
+        Type type = findTypeById(id);
+        if (type != null) {
+            if (type.getSubTypes().isEmpty()) {
+                if (type.getElectronicDevices().isEmpty()){
+                    typeRepository.deleteById(id);
+                    return ("El registro con id: " + id + " se elimino con exito");
+                } else {
+                    return ("El registro con id: " + id + " no se puede eliminar porque tiene aparatos electronicos asociados");
+                }
+            } else {
+                return ("El registro con id: " + id + " no se puede eliminar porque tiene subtipos asociados");
+            }
+        } else {
+            return ("El registro con id: " + id + " no existe");
+        }
     }
-
-
-
-
-
-
-
 
 }

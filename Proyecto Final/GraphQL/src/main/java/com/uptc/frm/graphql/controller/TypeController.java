@@ -26,11 +26,6 @@ public class TypeController {
         return typeService.findTypeById(typeId);
     }
 
-    @QueryMapping
-    public List<Type> findTypeBySubTypeId(@Argument Integer subtypeId){
-        return typeService.findBySubTypeId(subtypeId);
-    }
-
     @MutationMapping
     public Type createType(@Argument Type inputType){
         return typeService.saveType(inputType);
@@ -43,13 +38,8 @@ public class TypeController {
 
     @MutationMapping
     public String deleteType(@Argument Integer typeId){
-        Type type = typeService.findTypeById(typeId);
-        if (type != null) {
-            typeService.deleteTypeById(typeId);
-            return ("El registro con id: " + typeId + " se elimino con exito");
-        } else {
-            return ("El registro con id: " + typeId + " no existe");
-        }
+        String response = typeService.deleteTypeById(typeId);
+        return response;
     }
 
 }

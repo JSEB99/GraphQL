@@ -4,7 +4,6 @@ type Query {
     findElectronicDeviceByTypeId(typedId: Int) : [ElectronicDevices]
     findAllTypes : [Type]
     findTypeById(typeId: Int) : Type
-    findTypeBySubTypeId(subtypeId: Int) : [Type]
     findAllSubTypes : [SubType]
     findSubTypeById(subTypeId: Int) : SubType
     findClientById(idClientC: Int) :Client
@@ -128,17 +127,18 @@ input Types {
     typeId: ID,
     description: String,
     characteristics: String,
-    subtypeId: Int
 }
 
 type SubType {
     subTypeId: ID,
-    description: String
+    description: String,
+    type: Type
 }
 
 input SubTypes {
     subTypeId: ID,
-    description: String
+    description: String,
+    typeId: Int
 }
 
 type Manufacturer {

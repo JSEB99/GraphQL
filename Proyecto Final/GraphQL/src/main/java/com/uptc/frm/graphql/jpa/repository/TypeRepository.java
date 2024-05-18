@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface TypeRepository extends JpaRepository<Type, Integer> {
 
-    public List<Type> findBySubtypeId(Integer idSubType);
 }

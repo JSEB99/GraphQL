@@ -15,9 +15,12 @@ public class SubType {
     private int subTypeId;
     @Column(name = "DESCRIPCION")
     private String description;
+    @Column(name = "TIPO_ID", insertable = false, updatable = false)
+    private int typeId;
 
-    @OneToMany(mappedBy = "subType")
-    private List<Type> types;
+    @ManyToOne
+    @JoinColumn(name="TIPO_ID",nullable=false)
+    private Type type;
 
     public SubType() {}
 
@@ -37,12 +40,20 @@ public class SubType {
         this.description = description;
     }
 
-    public List<Type> getTypes() {
-        return types;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setTypes(List<Type> types) {
-        this.types = types;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     @Override
