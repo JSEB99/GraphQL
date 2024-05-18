@@ -30,8 +30,9 @@ public class SubTypeService {
         Type type = typeService.findTypeById(subType.getTypeId());
         if (type != null) {
             return subTypeRepository.save(subType);
+        } else {
+            return null;
         }
-        return null;
     }
 
     public SubType updateSubType(SubType subType) {
