@@ -1,5 +1,6 @@
 package com.uptc.frm.graphql.services;
 
+import com.uptc.frm.graphql.jpa.models.Component;
 import com.uptc.frm.graphql.jpa.models.Manufacturer;
 import com.uptc.frm.graphql.jpa.repository.ComponentRepository;
 import com.uptc.frm.graphql.jpa.repository.ManufacturerRepository;
@@ -46,10 +47,12 @@ public class ManufacturerService {
         return inputManufacturer;
     }
 
-    public void deleteManufacturer(Integer manufacturerId){
-        Integer componentId = (int) componentRepository.findComponentsByManufacturerId(manufacturerId).get(0).getComponentId();
-        componentRepository.deleteById(componentId);
-        manufacturerRepository.deleteById(manufacturerId);
+    public Integer deleteManufacturer(Integer manufacturerId){
+        List<Component> components = componentRepository.findComponentsByManufacturerId(manufacturerId);
+        if(components.size()==0){
+            manufacturerRepository.deleteById(manufacturerId);
+        }
+        return components.size();
     }
 
 

@@ -1,9 +1,12 @@
 package com.uptc.frm.graphql.services;
 
 import com.uptc.frm.graphql.jpa.models.Component;
+import com.uptc.frm.graphql.jpa.models.ComponentDevice;
 import com.uptc.frm.graphql.jpa.models.Manufacturer;
+import com.uptc.frm.graphql.jpa.models.Modification;
 import com.uptc.frm.graphql.jpa.repository.ComponentDeviceRepository;
 import com.uptc.frm.graphql.jpa.repository.ComponentRepository;
+import com.uptc.frm.graphql.jpa.repository.ModificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,8 @@ public class ComponentService {
     private ComponentDeviceService componentDeviceService;
     @Autowired
     private ComponentDeviceRepository componentDeviceRepository;
+    @Autowired
+    private ModificationRepository modificationRepository;
 
     public List<Component> findAllComponents() {
         return componentRepository.findAll();
@@ -64,9 +69,16 @@ public class ComponentService {
         return null;
     }
 
-    public void deleteComponentById(Integer componentId) {
-        Integer componentDeviceId = (int) componentDeviceRepository.findByComponentId(componentId).get(0).getComponentsDeviceId();
-        componentDeviceRepository.deleteById(componentDeviceId);
-        componentRepository.deleteById(componentId);
+    public String deleteComponentById(Integer componentId) {
+        List<ComponentDevice> componentDevices = componentDeviceRepository.findByComponentId(componentId);
+        List<Modification> modifications = modificationRepository.findByidComponent(componentId);
+        if(componentDevices.size()==0){
+            if(modifications.size()==0){
+                componentRepository.deleteById(componentId);
+                return "exito";
+            }
+            return modifications.size()+" registros relacionados en Modificaciones";
+        }
+        return componentDevices.size()+" registros relacionados en Componentes Aparatos";
     }
 }

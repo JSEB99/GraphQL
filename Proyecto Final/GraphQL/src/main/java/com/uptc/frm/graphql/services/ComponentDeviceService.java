@@ -4,6 +4,7 @@ import com.uptc.frm.graphql.jpa.models.Component;
 import com.uptc.frm.graphql.jpa.models.ComponentDevice;
 import com.uptc.frm.graphql.jpa.models.ElectronicDevice;
 import com.uptc.frm.graphql.jpa.repository.ComponentDeviceRepository;
+import com.uptc.frm.graphql.jpa.repository.ComponentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ public class ComponentDeviceService {
     private ComponentService componentService;
     @Autowired
     private ElectronicDeviceService electronicDeviceService;
+    @Autowired
+    private ComponentRepository componentRepository;
 
     public List<ComponentDevice> findAllComponentDevices() {
         return componentDeviceRepository.findAll();

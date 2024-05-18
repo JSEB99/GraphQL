@@ -194,7 +194,7 @@ input UpdateComponentDevice {
 
 type ComponentDevice {
     componentsDeviceId: ID,
-    component: Int,
+    componentId: Int,
     deviceId: Int,
     quantity: Int,
     components: Component,

@@ -40,8 +40,13 @@ public class ManufacturerController {
     public String deleteManufacturer(@Argument Integer manufacturerId){
         Manufacturer manufacturer = findManufacturerById(manufacturerId);
         if(manufacturer != null){
-            manufacturerService.deleteManufacturer(manufacturerId);
-            return "El fabricante con id: "+manufacturerId+" se elimino con exito";
+            Integer flag = manufacturerService.deleteManufacturer(manufacturerId);
+            if(flag == 0){
+                return "El fabricante con id: "+manufacturerId+" se elimino con exito";
+            }else{
+                return "El fabricante con id: "+manufacturerId+" no se elimino con exito por que tiene: "+flag+" registros en Componentes relacionados";
+            }
+
         }else{
             return "El fabricante con id: "+manufacturerId+" no existe";
         }

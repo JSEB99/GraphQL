@@ -45,8 +45,13 @@ public class ComponentController {
     public String deleteComponent(@Argument Integer componentId) {
         Component component = getComponentById(componentId);
         if(component != null) {
-            componentService.deleteComponentById(componentId);
-            return "El componente con id: "+componentId+" ha sido eliminado con exito";
+            String flag = componentService.deleteComponentById(componentId);
+            if(flag == "exito"){
+                return "El componente con id: "+componentId+" se elimino con "+flag;
+            }else{
+                return "El componente con id: "+componentId+" no se elimino con exito por que tiene: "+flag;
+            }
+
         }else{
             return "El componente con id: "+componentId+" no existe";
         }
