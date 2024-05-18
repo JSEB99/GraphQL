@@ -97,6 +97,8 @@ El reto de este caso consiste en integrar GrapQL al proyecto desarrollado.
 
 Se siguen las siguientes etapas:
 
+<img src="./Assets/FlujoDeTrabajo.png" alt="FlujoTrabajo">
+
 ### Modelado de esquema de base de datos
 
 1. Se efectua el siguiente modelado
